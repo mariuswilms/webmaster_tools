@@ -70,9 +70,16 @@ class SitemapHelper extends AppHelper {
 			$sectionHtml = '';
 
 			foreach ($items as $item) {
-				$sectionHtml .= $this->Html->tag('li', $this->Html->link($item['title'], $item['url']));
+				$sectionHtml .= $this->Html->tag(
+					'li', $this->Html->link($item['title'], $item['url'])
+				);
 			}
-			$html .= $this->Html->tag('ul', $sectionHtml, array('class' => strtolower(Inflector::slug($section, '-'))));
+			$class = 'sitemap';
+
+			if ($section) {
+				$class .= ' ' . strtolower(Inflector::slug($section, '-'));
+			}
+			$html .= $this->Html->tag('ul', $sectionHtml, compact('class'));
 		}
 		return $html;
 	}
