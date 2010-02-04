@@ -1,0 +1,28 @@
+                              ___         
+ \    /_ |_ ._ _  _. __|_ _ ._  | _  _ | _ 
+  \/\/(/_|_)| | |(_|_> |_(/_|   |(_)(_)|_> 
+  Plugin for CakePHP
+
+  Authors
+  -------
+  See the AUTHORS file.
+
+  Copyright & License
+  -------------------
+  Webmaster Tools Plugin for CakePHP is Copyright (c) 2010 David Persson
+  if not otherwise stated. The code is distributed under the terms
+  of the MIT License. For the full license text see the LICENSE file.
+
+  Download
+  --------
+  Tar: http://github.com/davidpersson/webmaster_tools/tarball/master
+  Zip: http://github.com/davidpersson/webmaster_tools/zipball/master
+
+  Installation
+  ------------
+  Extract the downloaded archive.
+  Move or copy the extracted directory davidpersson-webmaster_tools-[hash]
+  to /path/to/your/app/plugins/webmaster_tools
+
+  For more information please visit the wiki at
+  http://github.com/davidpersson/webmaster_tools/wikis
