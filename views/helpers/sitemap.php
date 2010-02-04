@@ -57,11 +57,8 @@ class SitemapHelper extends AppHelper {
 	}
 
 	protected function _generateHtml() {
-		//$html = $this->Html->tag('div', );
-
 		$html = null;
 		$sections = array();
-
 
 		foreach ($this->_data as $item) {
 			$sections[$item['section']][] = $item;
