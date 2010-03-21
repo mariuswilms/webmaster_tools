@@ -86,6 +86,9 @@ class RobotControlHelper extends AppHelper {
 		$data = $this->_sort($this->_data);
 
 		foreach ($data as $agent => $ruleSet) {
+			if ($output) {
+				$output[] = "\n";
+			}
 			$output[] = 'User-agent: ' . $agent;
 
 			foreach ($ruleSet as $directive => $rule) {
