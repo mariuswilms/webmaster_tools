@@ -47,7 +47,7 @@ class RobotControlHelper extends AppHelper {
 	}
 
 	public function sitemap($url, $agent = '*') {
-		$this->_data[$agent]['Sitemap'][] = $this->url($url);
+		$this->_data[$agent]['Sitemap'][] = $this->url($url, true);
 	}
 
 	public function crawlDelay($seconds, $agent = '*') {
@@ -113,6 +113,15 @@ class RobotControlHelper extends AppHelper {
 		}
 		krsort($sorted);
 		return $sorted;
+	}
+
+	public function url($url, $full = false) {
+		$url = parent::url($url, true);
+
+		if (!$full) {
+			$url = str_replace(FULL_BASE_URL, '', $url);
+		}
+		return $url;
 	}
 
 }
