@@ -1,4 +1,4 @@
-                              ___         
+                               ___         
  \    /_ |_ ._ _  _. __|_ _ ._  | _  _ | _ 
   \/\/(/_|_)| | |(_|_> |_(/_|   |(_)(_)|_> 
   Plugin for CakePHP
@@ -22,5 +22,5 @@
   ------------
   Extract the downloaded archive.
   Move or copy the extracted directory davidpersson-webmaster_tools-[hash]
-  to /path/to/your/app/plugins/webmaster_tools
+  to /path/to/your/app/plugins/webmaster_tools.
 
