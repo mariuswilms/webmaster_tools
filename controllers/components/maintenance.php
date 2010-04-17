@@ -52,13 +52,13 @@ class MaintenanceComponent extends Object {
 		$this->__Controller->header('HTTP/1.1 503 Service Temporarily Unavailable');
 		$this->__Controller->header('Retry-After: ' . HOUR);
 
-		$this->cakeError('error', array(
+		$this->cakeError('error503', array(
 			'code' => 503,
 			'base' => $this->__Controller->base,
 			'url' => $this->__Controller->here,
 			'message' => __("We're currently working on the site, please check back later.", true),
-			'title' => '503 ' . __('Site down for maintenance', true)
-		))
+			'name' =>  __('Site down for maintenance', true)
+		));
 	}
 
 }
