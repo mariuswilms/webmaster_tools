@@ -40,7 +40,7 @@ class SitemapHelper extends AppHelper {
 			'modified' => null,
 			'changes' => null, // always, hourly, daily, weekly, monthly, yearly, never
 			'priority' => null, // 0.0 - 1.0 (most important), 0.5 is considered the default
-			'title' => null,
+			'title' => null, // for xml used as comment
 			'section' => null
 		);
 		$this->_data[] = compact('url') + $options + $defaults;
@@ -112,6 +112,9 @@ class SitemapHelper extends AppHelper {
 		foreach ($this->_data as $item) {
 			$Url = $Document->createElement('url');
 
+			if ($item['title']) {
+				$Url->appendChild($Document->createComment($item['title']));
+			}
 			$Url->appendChild($Document->createElement('loc', h($this->url($item['url'], true))));
 
 			if ($item['modified']) {
