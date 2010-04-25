@@ -14,6 +14,7 @@
  * @subpackage webmaster_tools.views.helpers
  * @copyright  2010 David Persson <davidpersson@gmx.de>
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @link       http://sitemaps.org/protocol.php
  */
 
 /**
