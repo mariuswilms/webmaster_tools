@@ -102,7 +102,9 @@ class SitemapHelper extends AppHelper {
 
 	protected function _generateXml() {
 		$Document = new DomDocument('1.0', 'UTF-8');
-		$Set = $Document->createElementNs('http://www.sitemaps.org/schemas/sitemap/0.9', 'urlset');
+		$Set = $Document->createElementNs(
+			'http://www.sitemaps.org/schemas/sitemap/0.9', 'urlset'
+		);
 		$Set->setAttributeNs(
 			'http://www.w3.org/2001/XMLSchema-instance',
 			'xsi:schemaLocation',
