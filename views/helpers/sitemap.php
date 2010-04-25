@@ -115,7 +115,7 @@ class SitemapHelper extends AppHelper {
 			$Url->appendChild($Document->createElement('loc', h($this->url($item['url'], true))));
 
 			if ($item['modified']) {
-				$Url->appendChild($Document->createElement('lastmod', date('c', strftime($item['modified']))));
+				$Url->appendChild($Document->createElement('lastmod', date('c', strtotime($item['modified']))));
 			}
 			if ($item['changes']) {
 				$Url->appendChild($Document->createElement('changefreq', $item['changes']));
