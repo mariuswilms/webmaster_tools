@@ -25,7 +25,7 @@
  */
 class SitemapHelper extends AppHelper {
 
-	public $format = 'xml'; // xml or html
+	public $format = 'xml'; // xml, txt or html, indexXml
 
 	public $helpers = array('Html');
 
@@ -125,6 +125,44 @@ class SitemapHelper extends AppHelper {
 			}
 			if ($item['priority']) {
 				$Url->appendChild($Document->createElement('priority', $item['priority']));
+			}
+			$Set->appendChild($Url);
+		}
+		$Document->appendChild($Set);
+
+		return $Document->saveXml();
+	}
+
+	protected function _generateTxt() {
+		$result = null;
+
+		foreach (Set::extract('/url') as $url) {
+			$result .= $this->url($url, true) . "\n";
+		}
+		return $result;
+	}
+
+	protected function _generateIndexXml() {
+		$Document = new DomDocument('1.0', 'UTF-8');
+		$Set = $Document->createElementNs(
+			'http://www.sitemaps.org/schemas/sitemap/0.9', 'sitemapindex'
+		);
+		$Set->setAttributeNs(
+			'http://www.w3.org/2001/XMLSchema-instance',
+			'xsi:schemaLocation',
+			'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd'
+		);
+
+		foreach ($this->_data as $item) {
+			$Url = $Document->createElement('sitemap');
+
+			if ($item['title']) {
+				$Url->appendChild($Document->createComment($item['title']));
+			}
+			$Url->appendChild($Document->createElement('loc', h($this->url($item['url'], true))));
+
+			if ($item['modified']) {
+				$Url->appendChild($Document->createElement('lastmod', date('c', strtotime($item['modified']))));
 			}
 			$Set->appendChild($Url);
 		}
