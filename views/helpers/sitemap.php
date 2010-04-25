@@ -31,6 +31,10 @@ class SitemapHelper extends AppHelper {
 
 	protected $_data = array();
 
+	protected $_maxUrls = 50000;
+
+	protected $_maxSize = 10485760;
+
 	public function add($url, $options = array()) {
 		$defaults = array(
 			'modified' => null,
@@ -42,17 +46,28 @@ class SitemapHelper extends AppHelper {
 		$this->_data[] = compact('url') + $options + $defaults;
 	}
 
-	public function generate($options = array()) {
-		$defaults = array('reset' => false, 'format' => 'xml');
+	public function generate($format = 'xml', array $options = array()) {
+		$defaults = array('reset' => false);
 		extract($options + $defaults);
 
-		if ($format == 'xml') {
-			$result = $this->_generateXml();
-		} else {
-			$result = $this->_generateHtml();
+		if (!method_exists($this, '_generate' . ucfirst($format))) {
+			$message = 'SitemapHelper::generate - Invalid format given';
+			trigger_error($message, E_USER_WARNING);
+			return;
 		}
+		if (count($this->_data) > $this->_maxUrls) {
+			$message  = "SitemapHelper::generate - More than {$this->_maxUrls} URLs";
+			trigger_error($message, E_USER_WARNING);
+		}
+
+		$result = $this->{"_generate" . ucfirst($format)}();
+
 		if ($reset) {
 			$this->_data = array();
+		}
+		if (strlen($result) > $this->_maxSize) {
+			$message  = "SitemapHelper::generate - Result document exceeds {$this->_maxSize} bytes";
+			trigger_error($message, E_USER_WARNING);
 		}
 		return $result;
 	}
