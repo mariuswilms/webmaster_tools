@@ -40,8 +40,8 @@ class SitemapHelper extends AppHelper {
 			'modified' => null,
 			'changes' => null, // always, hourly, daily, weekly, monthly, yearly, never
 			'priority' => null, // 0.0 - 1.0 (most important), 0.5 is considered the default
-			'title' => null, // for xml used as comment
-			'section' => null
+			'title' => null, // for xml used as comment, otherwise for html
+			'section' => null // used for html only
 		);
 		$this->_data[] = compact('url') + $options + $defaults;
 	}
