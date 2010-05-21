@@ -55,8 +55,8 @@ class RobotControlHelper extends AppHelper {
 	}
 
 	public function visitTime($from, $until, $agent = '*') {
-		$from = date('H:i', strftime($from));
-		$until = date('H:i', strftime($until));
+		$from = date('H:i', strtotime($from));
+		$until = date('H:i', strtotime($until));
 
 		$this->_data[$agent]['Visit-time'][] = "{$from} - {$until}";
 	}
@@ -66,8 +66,8 @@ class RobotControlHelper extends AppHelper {
 		$data = "{$documents}/60";
 
 		if ($from && $until) {
-			$from = date('H:i', strftime($from));
-			$until = date('H:i', strftime($until));
+			$from = date('H:i', strtotime($from));
+			$until = date('H:i', strtotime($until));
 			$data .= "{$from} - {$until}";
 		}
 		$this->_data[$agent]['Request-rate'][] = $data;
