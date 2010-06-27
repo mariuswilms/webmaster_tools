@@ -17,23 +17,19 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * PHP version 5
- * CakePHP version 1.2
+ * CakePHP version 1.3
  *
  * @package    webmaster_tools
  * @subpackage webmaster_tools.views.elements
  * @copyright  2010 David Persson <davidpersson@gmx.de>
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License
  */
-if (!isset($enable)) {
-	$enable = true;
-}
-if (!isset($tracker)) {
-	$tracker = Configure::read('WebmasterTools.googleAnalytics.tracker');
-}
-if (empty($tracker)) {
+extract(Configure::read('WebmasterTools.googleAnalytics'), EXTR_SKIP);
+
+if (empty($account)) {
 	$message  = "No Google Analytics tracker id found. Provide one to the element directly ";
-	$message .= "via the `'tracker'` key or set it in the configuration as ";
-	$message .= "`WebmasterTools.googleAnalytics.tracker`.";
+	$message .= "via the `'account'` key or set it in the configuration as ";
+	$message .= "`WebmasterTools.googleAnalytics.account`.";
 	trigger_error($message, E_USER_NOTICE);
 	$enable = false;
 }
@@ -41,16 +37,24 @@ if (empty($tracker)) {
 <?php if ($enable): ?>
 <!-- Google Analytics tracker -->
 <script type="text/javascript">
-	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-	document.write(unescape(
-		"%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"
-	));
-</script>
-<script type="text/javascript">
-	try {
-		var pageTracker = _gat._getTracker("<?php echo $tracker; ?>");
-		pageTracker._trackPageview();
-	} catch(err) {}
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', '<?php echo $account ?>']);
+<?php if ($domainName): ?>
+	_gaq.push(['_setDomainName', "<?php echo $domainName ?>"]);
+<?php endif ?>
+<?php if ($allowLinker !== null): ?>
+	_gaq.push(['_setAllowLinker', <?php echo ($allowLinker ? 'true' : 'false') ?>]);
+<?php endif ?>
+<?php if ($allowHash !== null): ?>
+	_gaq.push(['_setAllowHash', <?php echo ($allowHash ? 'true' : 'false') ?>]);
+<?php endif ?>
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
 </script>
 <?php else: ?>
 <!-- Google Analytics tracker omitted (not enabled) -->

@@ -17,7 +17,11 @@
  */
 
 Configure::write('WebmasterTools.googleAnalytics', array(
-	'tracker' => null
+	'enable' => true,
+	'account' => null,
+	'domainName' => null,
+	'allowLinker' => null,
+	'allowHash' => null
 ));
 
 ?>
