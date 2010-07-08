@@ -138,8 +138,8 @@ class SitemapHelper extends AppHelper {
 	protected function _generateTxt() {
 		$result = null;
 
-		foreach (Set::extract('/url') as $url) {
-			$result .= $this->url($url, true) . "\n";
+		foreach ($this->_data as $item) {
+			$result .= $this->url($item['url'], true) . "\n";
 		}
 		return $result;
 	}
