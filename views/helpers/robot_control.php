@@ -68,7 +68,7 @@ class RobotControlHelper extends AppHelper {
 		if ($from && $until) {
 			$from = date('H:i', strtotime($from));
 			$until = date('H:i', strtotime($until));
-			$data .= "{$from} - {$until}";
+			$data .= " {$from} - {$until}";
 		}
 		$this->_data[$agent]['Request-rate'][] = $data;
 	}
