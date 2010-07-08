@@ -81,27 +81,26 @@ class RobotControlHelper extends AppHelper {
 		$defaults = array('reset' => false);
 		extract($options += $defaults);
 
-		$output = array();
+		$output = null;
 
 		$data = $this->_sort($this->_data);
 
 		foreach ($data as $agent => $ruleSet) {
 			if ($output) {
-				$output[] = "\n";
+				$output .= "\n";
 			}
-			$output[] = 'User-agent: ' . $agent;
+			$output .= "User-agent: {$agent}\n";
 
 			foreach ($ruleSet as $directive => $rule) {
 				foreach ((array) $rule as $value) {
-					$output[] = $directive . ': ' . $value;
+					$output .= "{$directive}: {$value}\n";
 				}
 			}
-			$output[] = '';
 		}
 		if ($reset) {
 			$this->_data = array();
 		}
-		return implode("\n", $output);
+		return $output;
 	}
 
 	protected function _sort($data) {
