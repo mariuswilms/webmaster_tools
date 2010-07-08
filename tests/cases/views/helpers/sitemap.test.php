@@ -34,7 +34,7 @@ class SitemapHelperTestCase extends CakeTestCase {
 	public function setUp() {
 		$this->Helper = new SitemapHelper();
 		$this->Helper->Html = new HtmlHelper(); // load helper's helpers manually
-		$this->_online = @fsockopen('cakephp.org', 80);
+		$this->_online = (boolean) @fsockopen('cakephp.org', 80);
 	}
 
 	public function testSiteindexXml() {
