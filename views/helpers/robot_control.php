@@ -126,5 +126,6 @@ class RobotControlHelper extends AppHelper {
 		}
 		return $url;
 	}
-
 }
+
+?>
