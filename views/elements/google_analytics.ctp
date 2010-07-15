@@ -24,7 +24,14 @@
  * @copyright  2010 David Persson <davidpersson@gmx.de>
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License
  */
-extract(Configure::read('WebmasterTools.googleAnalytics'), EXTR_SKIP);
+$defaults = array(
+	'enable' => true,
+	'account' => null,
+	'domainName' => null,
+	'allowLinker' => null,
+	'allowHash' => null
+);
+extract(Configure::read('WebmasterTools.googleAnalytics') + $defaults, EXTR_SKIP);
 
 if (empty($account)) {
 	$message  = "No Google Analytics tracker id found. Provide one to the element directly ";
