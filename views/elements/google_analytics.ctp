@@ -6,7 +6,7 @@
  * {{{
  *	echo $this->element('google_analytics', array(
  *		'plugin' => 'webmaster_tools',
- *		'tracker' => 'UA-XXXXXXXX',
+ *		'account' => 'UA-XXXXXXXX',
  *		'enable' => env('HTTP_HOST') == 'production.org' && !Configure::read('debug')
  * ));
  * }}}
