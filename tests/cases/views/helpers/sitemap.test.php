@@ -94,10 +94,12 @@ class SitemapHelperTestCase extends CakeTestCase {
 			'section' => 'the section'
 		));
 
+		$baseUrl = defined('FULL_BASE_URL') ? FULL_BASE_URL : 'http://localhost';
+
 		$result = $this->Helper->generate('txt');
 		$expected = <<<TXT
-/posts-abcdef
-/posts-abcdef/add
+{$baseUrl}/posts-abcdef
+{$baseUrl}/posts-abcdef/add
 
 TXT;
 		$this->assertEqual($expected, $result);

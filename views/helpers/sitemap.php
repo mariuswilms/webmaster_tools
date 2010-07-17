@@ -135,6 +135,7 @@ class SitemapHelper extends AppHelper {
 		return $Document->saveXml();
 	}
 
+	// @link http://www.sitemaps.org/protocol.php#otherformats
 	protected function _generateTxt() {
 		$result = null;
 
