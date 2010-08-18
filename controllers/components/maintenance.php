@@ -46,7 +46,7 @@ class MaintenanceComponent extends Object {
 	 * @return void
 	 * @link http://mark-story.com/posts/view/quick-and-dirty-down-for-maintenance-page-with-cakephp
 	 */
-	public function activate() {
+	public function activate($message = null) {
 		Configure::write('debug', 0);
 
 		$this->__Controller->header('HTTP/1.1 503 Service Temporarily Unavailable');
@@ -56,11 +56,10 @@ class MaintenanceComponent extends Object {
 			'code' => 503,
 			'base' => $this->__Controller->base,
 			'url' => $this->__Controller->here,
-			'message' => __("We're currently working on the site, please check back later.", true),
-			'name' =>  __('Site down for maintenance', true)
+			'message' => $message ? $message : __("We're currently working on the site.", true),
+			'name' => __('Maintenance', true)
 		));
 	}
-
 }
 
 ?>
