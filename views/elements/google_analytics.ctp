@@ -29,7 +29,8 @@ $defaults = array(
 	'account' => null,
 	'domainName' => null,
 	'allowLinker' => null,
-	'allowHash' => null
+	'allowHash' => null,
+	'url' => null
 );
 extract(Configure::read('WebmasterTools.googleAnalytics') + $defaults, EXTR_SKIP);
 
@@ -55,8 +56,11 @@ if (empty($account)) {
 <?php if ($allowHash !== null): ?>
 	_gaq.push(['_setAllowHash', <?php echo ($allowHash ? 'true' : 'false') ?>]);
 <?php endif ?>
+<?php if ($url): ?>
+	_gaq.push(['_trackPageview', '<?php echo $url ?>']);
+<?php else: ?>
 	_gaq.push(['_trackPageview']);
-
+<?php endif ?>
 	(function() {
 		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
