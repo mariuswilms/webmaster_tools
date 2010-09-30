@@ -1,6 +1,6 @@
-                               ___         
- \    /_ |_ ._ _  _. __|_ _ ._  | _  _ | _ 
-  \/\/(/_|_)| | |(_|_> |_(/_|   |(_)(_)|_> 
+                               ___
+ \    /_ |_ ._ _  _. __|_ _ ._  | _  _ | _
+  \/\/(/_|_)| | |(_|_> |_(/_|   |(_)(_)|_>
   Plugin for CakePHP
 
   Authors
@@ -13,6 +13,13 @@
   if not otherwise stated. The code is distributed under the terms
   of the MIT License. For the full license text see the LICENSE file.
 
+  Donations
+  ---------
+  If you enjoy working with this plugin and this open source project is of
+  great use to you, consider buying me a book from my amazon wish list.
+
+  http://amzn.com/w/1YHE04BY8UDI - Your donation is much appreciated.
+
   Download
   --------
   Tar: http://github.com/davidpersson/webmaster_tools/tarball/master
@@ -20,7 +27,53 @@
 
   Installation
   ------------
-  Extract the downloaded archive.
-  Move or copy the extracted directory davidpersson-webmaster_tools-[hash]
-  to /path/to/your/app/plugins/webmaster_tools.
+  1. Extract the downloaded archive.
+  2. Move or copy the extracted directory davidpersson-webmaster_tools-[hash]
+     to /path/to/your/app/plugins/webmaster_tools.
+  3. Load the plugin's configuration and routes.
+     {{{
+         // Within your app's core.php
+         require APP . 'plugins/webmaster_tools/config/core.php';
+
+         // Within your app's routes.php
+         require APP . 'plugins/webmaster_tools/config/routes.php';
+     }}}
+
+  Versions & Requirements
+  -----------------------
+  1.0, CakePHP 1.3.x, PHP >=5.2.1
+
+  The plugin is known to run fine under linux and darwin.
+
+  Getting Help
+  ------------
+  You can post questions regarding the usage of the plugin to the very active
+  Official CakePHP Mailinglist (http://groups.google.com/group/cake-php). When
+  question are anwsered there (I try to answer them all) it helps everybody
+  reading the list. This is also the reason why I prefer not to answer direct
+  support requests through email or other messaging systems.
+
+  Bugs
+  ----
+  If you've found a bug or like to suggest a feature create a ticket in the
+  issue tracker. You'll find the tracker at:
+
+  http://github.com/davidpersson/media/issues
+
+  Contributing
+  ------------
+  If you have some ideas for improving this library just fork the repository,
+  make your changes and when ready send a pull request to notify me about the
+  changes you made. I'll review them and see if I can merge them back. Please
+  style your code according to the code which is already there.
+
+  Please note that code which is supposed to be merged into this (blessed)
+  repository must carry the same header (including the copyright statement) as
+  all code in the library and should be free of any @author tags. This may seem
+  a little strange at first. But let me explain: Multiple copyright
+  holders/licenses complicate things where not necessary. @author tags seem to
+  mark sections of code as belonging to, owned or claimed by the specific author.
+
+  As an alternative the project has a dedicated AUTHORS file where every contributor
+  is listed with her/his name/nick along with an email address.
 
