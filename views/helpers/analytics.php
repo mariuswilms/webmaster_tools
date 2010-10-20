@@ -74,8 +74,10 @@ class AnalyticsHelper extends AppHelper {
 JS;
 
 		$out[] = '<script type="text/javascript">';
+		$out[] = 'var _gaq = _gaq || [];';
+
 		foreach ($this->_commands as $command) {
-			$out[] = sprintf('_gaq.push(%s)', json_encode($command));
+			$out[] = sprintf('_gaq.push(%s);', json_encode($command));
 		}
 		$out[] = $loader;
 		$out[]  = '</script>';
