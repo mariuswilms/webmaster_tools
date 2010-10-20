@@ -11,9 +11,16 @@ class AnalyticsHelper extends AppHelper {
 
 	protected $_commmands = array();
 
+	// If null will use google hosted script.
+	protected $_script;
+
 	public function __construct($settings = array()) {
 		foreach ($settings as $key => $value) {
-			call_user_func(array($this, $key), $value);
+			if (property_exists($this, $property = "_{$key}")) {
+				$this->{$property} = $value;
+			} else {
+				call_user_func(array($this, $key), $value);
+			}
 		}
 	}
 
@@ -65,24 +72,36 @@ class AnalyticsHelper extends AppHelper {
 		$options += array(
 			'reset' => false
 		);
+
+		if ($this->_script) {
+			$source = $this->webroot("/js/{$this->_script}.js");
+		} elseif (env('HTTPS')) {
+			$source = 'https://ssl.google-analytics.com/ga.js';
+		} else {
+			$source = 'http://www.google-analytics.com/ga.js';
+		 }
 		$loader = <<<JS
-(function() {
-	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
+  (function() {
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = '{$source}';
+
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 JS;
 
 		$out[] = '<script type="text/javascript">';
-		$out[] = 'var _gaq = _gaq || [];';
 		$out[] = '';
+		$out[] = '  var _gaq = _gaq || [];';
 
 		foreach ($this->_commands as $command) {
-			$out[] = sprintf('_gaq.push(%s);', json_encode($command));
+			$out[] = sprintf('  _gaq.push(%s);', json_encode($command));
 		}
 
 		$out[] = '';
 		$out[] = $loader;
+		$out[] = '';
 		$out[] = '</script>';
 
 		if ($options['reset']) {
