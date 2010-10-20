@@ -3,6 +3,10 @@
   \/\/(/_|_)| | |(_|_> |_(/_|   |(_)(_)|_>
   Plugin for CakePHP
 
+
+  ---- A CakePHP plugin featuring a helper for generating
+       sitemaps amongst other things.
+
   Authors
   -------
   See the AUTHORS file.
@@ -22,8 +26,7 @@
 
   Download
   --------
-  Tar: http://github.com/davidpersson/webmaster_tools/tarball/master
-  Zip: http://github.com/davidpersson/webmaster_tools/zipball/master
+  http://github.com/davidpersson/webmaster_tools/downloads
 
   Installation
   ------------
@@ -58,7 +61,7 @@
   If you've found a bug or like to suggest a feature create a ticket in the
   issue tracker. You'll find the tracker at:
 
-  http://github.com/davidpersson/media/issues
+  http://github.com/davidpersson/webmaster_tools/issues
 
   Contributing
   ------------
