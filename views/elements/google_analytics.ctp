@@ -23,7 +23,12 @@
  * @subpackage webmaster_tools.views.elements
  * @copyright  2010 David Persson <davidpersson@gmx.de>
  * @license    http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @deprecated
  */
+$message  = "The google analytics element has been deprecated. ";
+$message .= "Please use the new analytics helper directly.";
+trigger_error($message, E_USER_NOTICE);
+
 $defaults = array(
 	'enable' => true,
 	'account' => null,
@@ -44,29 +49,13 @@ if (empty($account)) {
 ?>
 <?php if ($enable): ?>
 <!-- Google Analytics tracker -->
-<script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', '<?php echo $account ?>']);
-<?php if ($domainName): ?>
-	_gaq.push(['_setDomainName', "<?php echo $domainName ?>"]);
-<?php endif ?>
-<?php if ($allowLinker !== null): ?>
-	_gaq.push(['_setAllowLinker', <?php echo ($allowLinker ? 'true' : 'false') ?>]);
-<?php endif ?>
-<?php if ($allowHash !== null): ?>
-	_gaq.push(['_setAllowHash', <?php echo ($allowHash ? 'true' : 'false') ?>]);
-<?php endif ?>
-<?php if ($url): ?>
-	_gaq.push(['_trackPageview', '<?php echo $url ?>']);
-<?php else: ?>
-	_gaq.push(['_trackPageview']);
-<?php endif ?>
-	(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
-</script>
+<?php
+	$analytics->config(array_filter(compact(
+		'account', 'domainName', 'allowLinker', 'allowHash'
+	)));
+	$analytics->trackPageview($url);
+	echo $analytics->generate();
+?>
 <?php else: ?>
 <!-- Google Analytics tracker omitted (not enabled) -->
 <?php endif ?>
