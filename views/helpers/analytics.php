@@ -65,7 +65,7 @@ class AnalyticsHelper extends AppHelper {
 	}
 
 	public function trackPageview($url = null) {
-		$this->_commands[] = $url ? array('_trackPageview', $url) : array('trackPageview');
+		$this->_commands[] = $url ? array('_trackPageview', $url) : array('_trackPageview');
 	}
 
 	public function generate(array $options = array()) {
