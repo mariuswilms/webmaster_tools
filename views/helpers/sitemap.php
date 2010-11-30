@@ -38,10 +38,11 @@ class SitemapHelper extends AppHelper {
 	public function add($url, $options = array()) {
 		$defaults = array(
 			'modified' => null,
-			'changes' => null, // always, hourly, daily, weekly, monthly, yearly, never
-			'priority' => null, // 0.0 - 1.0 (most important), 0.5 is considered the default
-			'title' => null, // for xml used as comment, otherwise for html
-			'section' => null // used for html only
+			'changes' => null, // always, hourly, daily, weekly, monthly, yearly, never.
+			'priority' => null, // 0.0 - 1.0 (most important), 0.5 is considered the default.
+			'title' => null, // For XML used as comment, otherwise for HTML.
+			'section' => null, // Used for HTML only.
+			'images' => array()
 		);
 		$this->_data[] = compact('url') + $options + $defaults;
 	}
