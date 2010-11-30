@@ -113,23 +113,23 @@ class SitemapHelper extends AppHelper {
 		);
 
 		foreach ($this->_data as $item) {
-			$Url = $Document->createElement('url');
+			$Page = $Document->createElement('url');
 
 			if ($item['title']) {
-				$Url->appendChild($Document->createComment($item['title']));
+				$Page->appendChild($Document->createComment($item['title']));
 			}
-			$Url->appendChild($Document->createElement('loc', h($this->url($item['url'], true))));
+			$Page->appendChild($Document->createElement('loc', h($this->url($item['url'], true))));
 
 			if ($item['modified']) {
-				$Url->appendChild($Document->createElement('lastmod', date('c', strtotime($item['modified']))));
+				$Page->appendChild($Document->createElement('lastmod', date('c', strtotime($item['modified']))));
 			}
 			if ($item['changes']) {
-				$Url->appendChild($Document->createElement('changefreq', $item['changes']));
+				$Page->appendChild($Document->createElement('changefreq', $item['changes']));
 			}
 			if ($item['priority']) {
-				$Url->appendChild($Document->createElement('priority', $item['priority']));
+				$Page->appendChild($Document->createElement('priority', $item['priority']));
 			}
-			$Set->appendChild($Url);
+			$Set->appendChild($Page);
 		}
 		$Document->appendChild($Set);
 
@@ -158,17 +158,17 @@ class SitemapHelper extends AppHelper {
 		);
 
 		foreach ($this->_data as $item) {
-			$Url = $Document->createElement('sitemap');
+			$Map = $Document->createElement('sitemap');
 
 			if ($item['title']) {
-				$Url->appendChild($Document->createComment($item['title']));
+				$Map->appendChild($Document->createComment($item['title']));
 			}
-			$Url->appendChild($Document->createElement('loc', h($this->url($item['url'], true))));
+			$Map->appendChild($Document->createElement('loc', h($this->url($item['url'], true))));
 
 			if ($item['modified']) {
-				$Url->appendChild($Document->createElement('lastmod', date('c', strtotime($item['modified']))));
+				$Map->appendChild($Document->createElement('lastmod', date('c', strtotime($item['modified']))));
 			}
-			$Set->appendChild($Url);
+			$Set->appendChild($Map);
 		}
 		$Document->appendChild($Set);
 
