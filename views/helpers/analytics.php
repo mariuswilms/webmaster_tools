@@ -36,6 +36,10 @@ class AnalyticsHelper extends AppHelper {
 		$this->_commands[] = array_merge(array('_set' . ucfirst($method)), $args);
 	}
 
+	public function anonymizeIp() {
+		$this->_commands[] = array('_gat._anonymizeIp');
+	}
+
 	/* Commands */
 
 	public function variable($index, $name, $value, $scope = 'page') {
