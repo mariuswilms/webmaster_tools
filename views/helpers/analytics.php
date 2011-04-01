@@ -72,6 +72,14 @@ class AnalyticsHelper extends AppHelper {
 		$this->_commands[] = $url ? array('_trackPageview', $url) : array('_trackPageview');
 	}
 
+	/**
+	 * Generates HTML and JavaScript to enable tracking. Will skip generation
+	 * if the DNT HTTP header is set and is trueish.
+	 *
+	 * @param array $options Following options are available:
+	 *              -`'reset'`: Resets the commands after generating.
+	 * @return string|void The HTML unless a DNT isn't enabled.
+	 */
 	public function generate(array $options = array()) {
 		$options += array(
 			'reset' => false
