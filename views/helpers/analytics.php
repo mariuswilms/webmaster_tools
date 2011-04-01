@@ -111,7 +111,9 @@ JS;
 		if ($options['reset']) {
 			$this->_commands = array();
 		}
-		return implode("\n", $out);
+		if (!env('HTTP_DNT')) {
+			return implode("\n", $out);
+		}
 	}
 }
 
