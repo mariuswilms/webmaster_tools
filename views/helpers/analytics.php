@@ -72,6 +72,25 @@ class AnalyticsHelper extends AppHelper {
 		$this->_commands[] = $url ? array('_trackPageview', $url) : array('_trackPageview');
 	}
 
+	public function trackEvent($category, $action, $label = null, $value = null) {
+		$command = array(
+			'_trackEvent',
+			$category,
+			$action
+		);
+		if (isset($label)) {
+			$command[] = $label ? $label : 'undefined';
+		}
+		if (isset($value)) {
+			if (!is_int($value)) {
+				$message  = "Analytics::trackEvent - Value is not an integer.";
+				trigger_error($message, E_USER_NOTICE);
+			}
+			$command[] = $value;
+		}
+		return $this->_renderCommand($command);
+	}
+
 	/**
 	 * Generates HTML and JavaScript to enable tracking. Will skip generation
 	 * if the DNT HTTP header is set and is trueish.
@@ -108,7 +127,7 @@ JS;
 		$out[] = '  var _gaq = _gaq || [];';
 
 		foreach ($this->_commands as $command) {
-			$out[] = sprintf('  _gaq.push(%s);', json_encode($command));
+			$out[] = '  ' . $this->_renderCommand($command);
 		}
 
 		$out[] = '';
@@ -122,6 +141,10 @@ JS;
 		if (!env('HTTP_DNT')) {
 			return implode("\n", $out);
 		}
+	}
+
+	protected function _renderCommand($command) {
+		return sprintf('_gaq.push(%s);', json_encode($command));
 	}
 }
 
