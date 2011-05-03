@@ -15,7 +15,7 @@ class AnalyticsHelper extends AppHelper {
 	protected $_script;
 
 	public function __construct($settings = array()) {
-		foreach ($settings as $key => $value) {
+		foreach ((array) $settings as $key => $value) {
 			if (property_exists($this, $property = "_{$key}")) {
 				$this->{$property} = $value;
 			} else {
