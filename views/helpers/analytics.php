@@ -72,6 +72,10 @@ class AnalyticsHelper extends AppHelper {
 		$this->_commands[] = $url ? array('_trackPageview', $url) : array('_trackPageview');
 	}
 
+	public function trackPageLoadTime() {
+		$this->_commands[] = array('_trackPageLoadTime');
+	}
+
 	public function trackEvent($category, $action, $label = null, $value = null) {
 		$command = array(
 			'_trackEvent',
