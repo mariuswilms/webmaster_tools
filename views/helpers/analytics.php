@@ -32,6 +32,10 @@ class AnalyticsHelper extends AppHelper {
 
 	/* Options */
 
+	public function script($url) {
+		$this->_script = $url;
+	}
+
 	public function __call($method, $args) {
 		$this->_commands[] = array_merge(array('_set' . ucfirst($method)), $args);
 	}
@@ -109,7 +113,7 @@ class AnalyticsHelper extends AppHelper {
 		);
 
 		if ($this->_script) {
-			$source = $this->webroot("/js/{$this->_script}.js");
+			$source = $this->_script;
 		} elseif (env('HTTPS')) {
 			$source = 'https://ssl.google-analytics.com/ga.js';
 		} else {
