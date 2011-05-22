@@ -111,13 +111,14 @@ class AnalyticsHelper extends AppHelper {
 		$options += array(
 			'reset' => false
 		);
+		$debug = Configure::read('debug');
 
 		if ($this->_script) {
 			$source = $this->_script;
 		} elseif (env('HTTPS')) {
-			$source = 'https://ssl.google-analytics.com/ga.js';
+			$source = 'https://ssl.google-analytics.com/' . ($debug ? 'u/ga_debug.js' : 'ga.js');
 		} else {
-			$source = 'http://www.google-analytics.com/ga.js';
+			$source = 'http://www.google-analytics.com/' . ($debug ? 'u/ga_debug.js' : 'ga.js');
 		 }
 		$loader = <<<JS
   (function() {
