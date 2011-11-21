@@ -9,7 +9,7 @@ class AnalyticsHelper extends AppHelper {
 	const OPT_SCOPE_SESSION = 2;
 	const OPT_SCOPE_PAGE = 3;
 
-	protected $_commmands = array();
+	protected $_commands = array();
 
 	// If null will use google hosted script.
 	protected $_script;
