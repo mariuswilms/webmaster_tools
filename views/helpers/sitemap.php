@@ -176,5 +176,4 @@ class SitemapHelper extends AppHelper {
 		$Document->formatOutput = (boolean) Configure::read('debug');
 		return $Document->saveXml();
 	}
-
 }
