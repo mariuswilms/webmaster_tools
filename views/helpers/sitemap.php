@@ -133,6 +133,7 @@ class SitemapHelper extends AppHelper {
 		}
 		$Document->appendChild($Set);
 
+		$Document->formatOutput = (boolean) Configure::read('debug');
 		return $Document->saveXml();
 	}
 
@@ -172,6 +173,7 @@ class SitemapHelper extends AppHelper {
 		}
 		$Document->appendChild($Set);
 
+		$Document->formatOutput = (boolean) Configure::read('debug');
 		return $Document->saveXml();
 	}
 
