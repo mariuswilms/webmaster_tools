@@ -123,7 +123,6 @@ class AnalyticsHelper extends AppHelper {
 		$loader = <<<JS
   (function() {
     var ga = document.createElement('script');
-    ga.type = 'text/javascript';
     ga.async = true;
     ga.src = '{$source}';
 
@@ -131,7 +130,7 @@ class AnalyticsHelper extends AppHelper {
   })();
 JS;
 
-		$out[] = '<script type="text/javascript">';
+		$out[] = '<script>';
 		$out[] = '';
 		$out[] = '  var _gaq = _gaq || [];';
 
