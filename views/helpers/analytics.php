@@ -104,7 +104,7 @@ class AnalyticsHelper extends AppHelper {
 	 * if the DNT HTTP header is set and is trueish.
 	 *
 	 * @param array $options Following options are available:
-	 *              -`'reset'`: Resets the commands after generating.
+	 *              - `'reset'`: Resets the commands after generating.
 	 * @return string|void The HTML unless a DNT isn't enabled.
 	 */
 	public function generate(array $options = array()) {
